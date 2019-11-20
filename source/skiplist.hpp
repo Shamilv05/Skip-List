@@ -4,6 +4,8 @@
 #include <atomic>
 #include <cstring>
 #include <cstdlib>
+#include <iostream>
+#include <vector>
 
 class Node {
 public:
@@ -15,7 +17,7 @@ public:
 
 class SkipList {
     uint64_t maximal_level;
-    uint64_t current_level;
+    uint64_t number_of_levels;
     float threshold;
     Node *header;
 

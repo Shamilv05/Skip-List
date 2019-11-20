@@ -16,12 +16,14 @@ public:
 class SkipList {
     uint64_t maximal_level;
     uint64_t current_level;
-    float fraction_of_nodes;
+    float threshold;
     Node *header;
 
 public:
     SkipList(uint64_t, float);
-    int randomLevel(); //function to count how many time flipped coin lands of edge(creating new level for element)
+    uint64_t coin_flip(); //function to count how many time flipped coin lands of edge(creating new level for element)
+    Node* create_node(int key, uint64_t level);
+    void insert_element(int key);
 };
 
 #endif

@@ -14,10 +14,10 @@ SkipList::SkipList(uint64_t max_level, float prob_threshold) {
 
 uint64_t SkipList::coin_flip() {
     float probabillity_of_edge = static_cast<float>(rand()) / RAND_MAX;
-    uint64_t level = 0;
+    uint64_t level = 1;
     while (probabillity_of_edge < threshold && level < maximal_level) {
         level++;
-        probabillity_of_edge = static_cast<float>(rand()) / RAND_MAX;;
+        probabillity_of_edge = static_cast<float>(rand()) / RAND_MAX;
     }
     return level;
 }

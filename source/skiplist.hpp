@@ -26,6 +26,8 @@ public:
     uint64_t coin_flip(); //function to count how many time flipped coin lands of edge(creating new level for element)
     std::shared_ptr<Node> create_node(int value, uint64_t level);
     void insert_element(int key);
+    void search_element(int value);
+    void delete_element(int value);
     void dump();
 };
 

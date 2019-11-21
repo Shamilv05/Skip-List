@@ -10,7 +10,7 @@
 class Node {
 public:
     int key;
-    Node **forward;
+    std::vector<std::shared_ptr<Node>> forward;
 
     Node(int, uint64_t);
 };
@@ -19,13 +19,14 @@ class SkipList {
     uint64_t maximal_level;
     uint64_t number_of_levels;
     float threshold;
-    Node *header;
+    std::shared_ptr<Node> header;
 
 public:
     SkipList(uint64_t, float);
     uint64_t coin_flip(); //function to count how many time flipped coin lands of edge(creating new level for element)
-    Node* create_node(int key, uint64_t level);
+    std::shared_ptr<Node> create_node(int value, uint64_t level);
     void insert_element(int key);
+    void dump();
 };
 
 #endif

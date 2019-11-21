@@ -17,7 +17,7 @@ uint64_t SkipList::coin_flip() {
     uint64_t level = 0;
     while (probabillity_of_edge < threshold && level < maximal_level) {
         level++;
-        probabillity_of_edge = static_cast<float>(rand()) / RAND_MAX;
+        probabillity_of_edge = static_cast<float>(rand()) / RAND_MAX;;
     }
     return level;
 }
@@ -27,13 +27,13 @@ std::shared_ptr<Node> SkipList::create_node(int key, uint64_t level) {
     return node;
 }
 
-void SkipList::insert_element(int key) {
-    std::shared_ptr<Node> current;
+void SkipList::insert_element(int value) {
+    std::shared_ptr<Node> current = header;
 
     std::vector<std::shared_ptr<Node>> update(maximal_level + 1);
 
-    for (size_t i = number_of_levels; i == 0; i--) {
-        while(current->forward[i] != nullptr && current->forward[i]->key < key) {
+    for (int i = number_of_levels; i >= 0; i--) {
+        while(current->forward[i] != nullptr && current->forward[i]->key < value) {
             current = current->forward[i];
         }
         update[i] = current;
@@ -41,7 +41,7 @@ void SkipList::insert_element(int key) {
 
     current = current->forward[0];
 
-    if (current == nullptr || current->key != key) {
+    if (current == nullptr || current->key != value) {
         uint64_t amount_of_levels = coin_flip();
 
         if (amount_of_levels > number_of_levels) {
@@ -51,7 +51,7 @@ void SkipList::insert_element(int key) {
             number_of_levels = amount_of_levels;
         }
         
-        std::shared_ptr<Node> node = create_node(key, amount_of_levels);
+        std::shared_ptr<Node> node = create_node(value, amount_of_levels);
 
         for (size_t i = 0; i < amount_of_levels; i++) {
             node->forward[i] = update[i]->forward[i];
@@ -59,7 +59,7 @@ void SkipList::insert_element(int key) {
         }
     }
 
-    std::cout << "Key " << key << " successfully inserted" << std::endl;
+    std::cout << "Key " << value << " successfully inserted" << std::endl;
 }
 
 void SkipList::dump() {

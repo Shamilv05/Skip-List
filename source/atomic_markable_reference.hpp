@@ -39,6 +39,10 @@ public:
         marked_next.store(new MarkableReference<T>(next_node, mark));
     }
 
+    T* getReference() {
+        return marked_next.load()->next;
+    }
+
     T* get(bool *mark) {
         MarkableReference<T> *temp = marked_next.load();
         *mark = temp->marked;
@@ -47,7 +51,7 @@ public:
 
     void set(T* new_ref, bool new_mark) {
         MarkableReference<T> *current = marked_next.load();
-        if (new_ref != current->next && new_mark != current->marked) {
+        if (new_ref != current->next || new_mark != current->marked) {
             marked_next.store(new MarkableReference<T>(new_ref, new_mark));
         }
     }

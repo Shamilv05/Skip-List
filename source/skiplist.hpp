@@ -7,16 +7,16 @@
 #include <iostream>
 #include <vector>
 #include <mutex>
+#include "atomic_markable_reference.hpp"
 
 class Node {
     std::mutex node_m;
 public:
     int key;
+    volatile bool marked = false;
     std::vector<std::shared_ptr<Node>> forward;
 
     Node(int, uint64_t);
-    void lock();
-    void unlock();
 };
 
 class SkipList {
@@ -24,6 +24,7 @@ class SkipList {
     uint64_t number_of_levels;
     float threshold;
     std::shared_ptr<Node> header;
+    std::shared_ptr<Node> tail;
 
 public:
     SkipList(uint64_t, float);

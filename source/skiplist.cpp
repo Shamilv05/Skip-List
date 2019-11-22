@@ -5,14 +5,6 @@ Node::Node(int value, uint64_t level) {
     this->forward = std::vector<std::shared_ptr<Node>>(level + 1);
 }
 
-void Node::lock() {
-    node_m.lock();
-}
-
-void Node::unlock() {
-    node_m.unlock();
-}
-
 SkipList::SkipList(uint64_t max_level, float prob_threshold) {
     maximal_level = max_level;
     threshold = prob_threshold;

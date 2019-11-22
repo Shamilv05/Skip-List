@@ -6,13 +6,17 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
+#include <mutex>
 
 class Node {
+    std::mutex node_m;
 public:
     int key;
     std::vector<std::shared_ptr<Node>> forward;
 
     Node(int, uint64_t);
+    void lock();
+    void unlock();
 };
 
 class SkipList {

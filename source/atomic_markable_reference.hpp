@@ -5,8 +5,6 @@
 #include <vector>
 #include <atomic>
 #include <random>
-#include <climits>
-#include <cstdio>
 
 template<class T> struct MarkableReference {
     T* next;

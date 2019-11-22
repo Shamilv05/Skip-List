@@ -1,4 +1,3 @@
-#include <iostream>
 #include "skiplist.hpp"
 
 extern int max_level;

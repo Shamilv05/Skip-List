@@ -57,8 +57,8 @@ public:
     bool CAS(T* expected, T* new_value, bool expected_mark, bool new_mark) {
         MarkableReference<T> *curr = marked_next.load();
         return (expected == curr->next && expected_mark == curr->marked && 
-			   ((new_value == curr->next && new_mark == curr->marked) ||
-		       marked_next.compare_exchange_strong(curr, new MarkableReference<T>(new_value, new_mark))));
+	        ((new_value == curr->next && new_mark == curr->marked) ||
+		marked_next.compare_exchange_strong(curr, new MarkableReference<T>(new_value, new_mark))));
     }
 };
 

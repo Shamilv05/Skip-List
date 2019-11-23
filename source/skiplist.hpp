@@ -37,8 +37,8 @@ public:
         bool snip;
 
         Node<T> *predecessor = new Node<T>();
-		Node<T> *current = new Node<T>();
-	    Node<T> *successor = new Node<T>();
+	Node<T> *current = new Node<T>();
+	Node<T> *successor = new Node<T>();
 
         RETRY:
         while(true) {

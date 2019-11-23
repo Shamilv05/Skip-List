@@ -53,7 +53,7 @@ public:
                             goto RETRY;
                         }
                         current = predecessor->next[i].getReference();
-						successor = current->next[i].get(mark);
+			successor = current->next[i].get(mark);
                     }
                     if (current->key < n_value) {
                         predecessor = current;
